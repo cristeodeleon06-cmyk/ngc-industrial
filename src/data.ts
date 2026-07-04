@@ -400,6 +400,36 @@ export const PROJECTS_DATA: Project[] = [
       'Reliable farm water supply',
       'Quality drilling and construction'
     ]
+  },
+   {
+    id: 'p8',
+    title: 'Professional Repair Services for Submersible Motors',
+    category: 'servicing',
+    description: 'Comprehensive inspection and repair of submersible motors to restore optimal performance, improve reliability, and minimize equipment downtime.',
+    location: 'Batangas',
+    client: 'Private',
+    completionDate: '2026',
+    image: '/images/water_service_thumb_1782701798458.jpg',
+    images: [
+      '/images/portfolio_images/rep1.jpg',
+      '/images/portfolio_images/rep2.jpg',
+      '/images/portfolio_images/rep3.jpg',
+      '/images/portfolio_images/rep4.jpg',
+      '/images/portfolio_images/rep5.jpg',
+      '/images/portfolio_images/rep6.jpg',
+      '/images/portfolio_images/rep7.jpg',
+      '/images/portfolio_images/rep8.jpg',
+      '/images/portfolio_images/rep9.jpg',
+      '/images/portfolio_images/rep10.jpg',
+      '/images/portfolio_images/rep11.jpg',
+      '/images/portfolio_images/rep12.jpg',
+      '/images/portfolio_images/rep13.jpg'
+    ],
+    highlights: [
+      'Expert diagnosis & precision repair',
+      'Complete electrical & mechanical restoration',
+      'Quality testing & reliable performance'
+    ]
   }
 ];
 
