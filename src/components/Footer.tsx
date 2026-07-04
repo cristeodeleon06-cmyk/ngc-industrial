@@ -95,12 +95,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Contact Headquarters
             </h4>
             <div className="space-y-3.5 text-xs text-slate-400 font-semibold" id="footer-contact-info">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">
-                  187 PUROK 6, DAMPOL, PLARIDEL, BULACAN 3004
+              <a
+                href="https://www.google.com/maps/place/14%C2%B053'56.3%22N+120%C2%B048'54.1%22E/@14.898959,120.815018,17z/data=!4m4!3m3!8m2!3d14.898959!4d120.815018?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 hover:text-[#FACC15] transition-colors group cursor-pointer"
+              >
+                <MapPin className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <span className="leading-relaxed text-slate-400 group-hover:text-[#FACC15] transition-colors underline decoration-slate-800 hover:decoration-[#FACC15]">
+                  187 PUROK 6, DAMPOL, PLARIDEL, BULACAN 3004 ↗
                 </span>
-              </div>
+              </a>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-yellow-400 shrink-0" />
                 <span>0917 623 2574/ 09688558232</span>
