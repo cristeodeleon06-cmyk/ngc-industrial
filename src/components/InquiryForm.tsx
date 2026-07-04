@@ -157,10 +157,15 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                   <Mail className="w-4 h-4 text-[#FACC15] shrink-0" />
                   <span className="font-semibold text-slate-200 truncate">chris_ngcindustrial@yahoo.com</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 text-[#FACC15] shrink-0" />
-                  <span className="font-semibold text-slate-200">187 purok 6 Dampol, Plaridel, Bulacan</span>
-                </div>
+                <a
+                  href="https://www.google.com/maps/place/14%C2%B053'56.3%22N+120%C2%B048'54.1%22E/@14.898959,120.815018,17z/data=!4m4!3m3!8m2!3d14.898959!4d120.815018?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 hover:text-[#FACC15] transition-colors group cursor-pointer"
+                >
+                  <MapPin className="w-4 h-4 text-[#FACC15] shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="font-semibold text-slate-200 group-hover:text-[#FACC15] transition-colors underline decoration-slate-600/50 hover:decoration-[#FACC15]">187 purok 6 Dampol, Plaridel, Bulacan ↗</span>
+                </a>
               </div>
             </div>
           </div>
