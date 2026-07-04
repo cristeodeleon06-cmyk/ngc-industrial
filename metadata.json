@@ -1,0 +1,6 @@
+{
+  "name": "NGC Industrial Pump Trading & Services",
+  "description": "Showcase website for NGC Industrial Pump Trading & Services specializing in Water Drilling, Electro-Mechanical Supply, and Water Services with an interactive Quote Estimator, Portfolio Gallery, and Quote Tracker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
