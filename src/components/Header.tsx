@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
         id="navbar-container"
       >
         <div className="cursor-pointer" onClick={() => handleNavClick('hero')} id="logo-trigger">
-          <NGCLogo textColor={isScrolled ? 'text-slate-800' : 'text-white'} size={42} />
+          <NGCLogo textColor={isScrolled ? 'text-slate-800' : 'text-white'} size={62} />
         </div>
 
         {/* Desktop Navigation Links */}
@@ -157,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
               </button>
               <div className="text-center text-xs text-slate-400 mt-2 flex flex-col gap-1">
                 <span>Emergency Support 24/7:</span>
-                <span className="font-bold text-[#FACC15] text-sm">+63 (2) 8555-7867</span>
+                <span className="font-bold text-[#FACC15] text-sm">+63915 421 4421</span>
               </div>
             </div>
           </div>

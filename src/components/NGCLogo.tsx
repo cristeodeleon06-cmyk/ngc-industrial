@@ -158,11 +158,11 @@ export const NGCLogo: React.FC<NGCLogoProps> = ({
 
       {/* Brand Title text label */}
       {showText && (
-        <div className="flex flex-col select-none leading-none" id="ngc-brand-text">
-          <span className={`text-xl font-black tracking-tight ${textColor}`}>
+        <div className="flex flex-col select-none leading-tight" id="ngc-brand-text">
+          <span className={`text-2xl md:text-3xl font-black tracking-tight ${textColor}`}>
             NGC
           </span>
-          <span className="text-[10px] font-bold tracking-wider text-blue-600 uppercase">
+          <span className="text-[10px] md:text-xs font-bold tracking-wider text-blue-500 uppercase">
             Industrial Pump Trading & Services
           </span>
         </div>

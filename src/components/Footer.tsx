@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Column 1: Company Logo / Bio (4 Cols) */}
           <div className="space-y-6 lg:col-span-4" id="footer-col-company">
             <div className="cursor-pointer" onClick={() => onNavigate('hero')}>
-              <NGCLogo textColor="text-white" size={48} />
+              <NGCLogo textColor="text-white" size={70} />
             </div>
             <p className="text-slate-400 text-xs md:text-sm leading-relaxed max-w-sm font-medium">
               NGC Industrial Pump Trading & Services is a premiere accredited engineering contractor. We specialize in deep ground water borehole exploration, premium hydraulic pump trading, smart automated electrical supplies, and rapid electro-mechanical maintenance services.
