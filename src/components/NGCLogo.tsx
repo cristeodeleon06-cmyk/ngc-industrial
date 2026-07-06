@@ -56,53 +56,55 @@ export const NGCLogo: React.FC<NGCLogoProps> = ({
           </filter>
         </defs>
 
-        {/* 1. Main Blue Diamond Shape (Split horizontally) */}
-        {/* Top Half of Diamond */}
+        {/* 1. Main Blue Diamond Shape (Split into quadrants with a horizontal gap between North and South) */}
+        {/* Top Half (North) of Diamond - Truncated at y = 98 for a 2px offset from center */}
         <path
-          d="M 100,8 L 192,100 L 170,100 C 165,65 135,35 100,30 L 100,8 Z"
+          d="M 100,8 L 190,98 L 100,98 Z"
           fill="url(#blueMetallic)"
-          stroke="#003366"
-          strokeWidth="1.5"
         />
         <path
-          d="M 100,8 L 8,100 L 30,100 C 35,65 65,35 100,30 L 100,8 Z"
+          d="M 100,8 L 10,98 L 100,98 Z"
           fill="url(#blueMetallic)"
-          stroke="#003366"
-          strokeWidth="1.5"
         />
         
-        {/* Bottom Half of Diamond */}
+        {/* Bottom Half (South) of Diamond - Truncated at y = 102 for a 2px offset from center */}
         <path
-          d="M 100,192 L 192,100 L 170,100 C 165,135 135,165 100,170 L 100,192 Z"
+          d="M 100,192 L 190,102 L 100,102 Z"
           fill="url(#blueMetallic)"
-          stroke="#003366"
-          strokeWidth="1.5"
         />
         <path
-          d="M 100,192 L 8,100 L 30,100 C 35,135 65,165 100,170 L 100,192 Z"
+          d="M 100,192 L 10,102 L 100,102 Z"
           fill="url(#blueMetallic)"
-          stroke="#003366"
-          strokeWidth="1.5"
         />
 
-        {/* Bevel Overlay for Metallic Shine */}
+        {/* Clean Outer Border for each part of the Diamond (Symmetrical triangular caps) */}
+        <polygon
+          points="100,8 190,98 10,98"
+          fill="none"
+          stroke="#003366"
+          strokeWidth="2"
+        />
+        <polygon
+          points="100,192 190,102 10,102"
+          fill="none"
+          stroke="#003366"
+          strokeWidth="2"
+        />
+
+        {/* Bevel Overlay for Metallic Shine (Aligned with truncated boundaries) */}
         <path
-          d="M 100,8 L 192,100 L 8,100 Z"
+          d="M 100,8 L 190,98 L 10,98 Z"
           fill="url(#bevelHighlight)"
           style={{ mixBlendMode: 'overlay' }}
         />
         <path
-          d="M 100,192 L 192,100 L 8,100 Z"
+          d="M 100,192 L 190,102 L 10,102 Z"
           fill="url(#bevelHighlight)"
           style={{ mixBlendMode: 'overlay' }}
         />
-
-        {/* Outer Circle Rim of the Bezel */}
-        <circle cx="100" cy="100" r="70" fill="none" stroke="#004C99" strokeWidth="5" />
-        <circle cx="100" cy="100" r="67" fill="none" stroke="#25A0FF" strokeWidth="1.5" />
 
         {/* Inner White/Silver Circle Backing */}
-        <circle cx="100" cy="100" r="60" fill="#FFFFFF" stroke="#002D66" strokeWidth="2" filter="url(#shadow)" />
+        <circle cx="100" cy="100" r="54" fill="#FFFFFF" stroke="#002D66" strokeWidth="2" filter="url(#shadow)" />
 
         {/* 2. Red "NGC" Letters with 3D Border & Stroke */}
         <g filter="url(#textShadow)" id="ngc-letters">
