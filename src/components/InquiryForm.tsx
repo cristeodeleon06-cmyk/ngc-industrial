@@ -209,7 +209,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                 <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Configure Specifications</span>
                   <span className="text-[10px] bg-[#0F172A] text-[#FACC15] border border-[#FACC15]/20 px-2.5 py-1 rounded font-semibold flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-[#FACC15]" /> 🛡 Secure Contact Form
+                    <Sparkles className="w-3 h-3 text-[#FACC15]" />Secure Contact Form
                   </span>
                 </div>
 
@@ -390,7 +390,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                 <div className="space-y-2">
                   <h3 className="text-xl md:text-2xl font-black text-white">Inquiry Successfully Logged!</h3>
                   <p className="text-slate-400 text-xs md:text-sm max-w-lg mx-auto leading-relaxed">
-                    Thank you, <span className="text-white font-bold">{name}</span>. Your technical dossier has been successfully synchronized to our Google Form database.
+                    Thank you, <span className="text-white font-bold">{name}</span>. Your inquiry has been securely received by NGC Industrial Pump Trading & Services. Our engineering team will review your request and contact you as soon as possible.
                   </p>
                 </div>
 
