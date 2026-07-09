@@ -53,26 +53,40 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
     return '';
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    const err = validateForm();
-    if (err) {
-      e.preventDefault();
-      setErrorMsg(err);
-      // Auto-clear error after 4 seconds
-      setTimeout(() => setErrorMsg(''), 4000);
-      return;
-    }
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    setIsSubmitting(true);
-    setErrorMsg('');
-    
-    // The browser will post to the target hidden_iframe.
-    // We simulate a short loading transition to show our sleek progress state before displaying the beautiful success dashboard.
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1200);
-  };
+  const err = validateForm();
+
+  if (err) {
+    setErrorMsg(err);
+    setTimeout(() => setErrorMsg(""), 4000);
+    return;
+  }
+
+  setIsSubmitting(true);
+  setErrorMsg("");
+
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+
+  try {
+    await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(formData as any).toString(),
+    });
+
+    setIsSubmitted(true);
+    form.reset();
+  } catch (error) {
+    setErrorMsg("Unable to send your inquiry. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const resetForm = () => {
     setName('');
@@ -175,14 +189,23 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
             
             {/* 1. Normal/Submitting Form View */}
             {!isSubmitted ? (
-              <form 
-                action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfOeyo9G2Yi4Ns4CXoZ3FO1epqwMID-x0T0pg-jtz4SQxGtWg/formResponse"
-                method="POST"
-                target="hidden_iframe"
-                onSubmit={handleFormSubmit}
-                className="space-y-6"
-                id="ngc-google-form"
-              >
+              <form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  data-netlify-honeypot="bot-field"
+  onSubmit={handleFormSubmit}
+  className="space-y-6"
+>
+    <input type="hidden" name="form-name" value="contact" />
+
+    <p hidden>
+        <label>
+            Don't fill this out:
+            <input name="bot-field" />
+        </label>
+    </p>
                 <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Configure Specifications</span>
                   <span className="text-[10px] bg-[#0F172A] text-[#FACC15] border border-[#FACC15]/20 px-2.5 py-1 rounded font-semibold flex items-center gap-1">
@@ -212,7 +235,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                     </label>
                     <input 
                       type="text"
-                      name="entry.1372405558"
+                      name="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Juan Dela Cruz"
@@ -228,7 +251,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                     </label>
                     <input 
                       type="text"
-                      name="entry.1748621044"
+                      name="company"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
                       placeholder="e.g. Juan Corp. / N/A"
@@ -244,7 +267,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                     </label>
                     <input 
                       type="email"
-                      name="entry.1766288424"
+                      name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="e.g. juan@Corp.com"
@@ -260,7 +283,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                     </label>
                     <input 
                       type="tel"
-                      name="entry.448584625"
+                      name="phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="e.g. +63 917 123 4567"
@@ -277,7 +300,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                   </label>
                   <input 
                     type="text"
-                    name="entry.1353912990"
+                    name="location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     placeholder="e.g. Any place around Philippines"
@@ -310,7 +333,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                   {/* Hidden Input field carrying the active subject value for Google Form posting */}
                   <input 
                     type="hidden" 
-                    name="entry.423533336" 
+                    name="subject" 
                     value={subject} 
                   />
                 </div>
@@ -321,7 +344,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                     <FileText className="w-3.5 h-3.5 text-[#FACC15]" /> Inquiry Description & Project Specifications *
                   </label>
                   <textarea 
-                    name="entry.1969382163"
+                    name="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={4}
@@ -414,13 +437,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
               </motion.div>
             )}
 
-            {/* Hidden Iframe to hold Google Form response and prevent standard browser page-redirection */}
-            <iframe 
-              name="hidden_iframe" 
-              id="hidden_iframe" 
-              style={{ display: 'none' }}
-              title="Google Form Submission Frame"
-            />
+            
           </div>
 
         </div>
