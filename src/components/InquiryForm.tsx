@@ -209,7 +209,7 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ initialService = 'dril
                 <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Configure Specifications</span>
                   <span className="text-[10px] bg-[#0F172A] text-[#FACC15] border border-[#FACC15]/20 px-2.5 py-1 rounded font-semibold flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-[#FACC15]" /> Syncs to Google Sheets
+                    <Sparkles className="w-3 h-3 text-[#FACC15]" /> 🛡 Secure Contact Form
                   </span>
                 </div>
 
