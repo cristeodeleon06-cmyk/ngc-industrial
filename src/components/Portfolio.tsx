@@ -518,7 +518,7 @@ export const Portfolio: React.FC = () => {
         {/* Filter Navigation Menu */}
         <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto" id="portfolio-filters">
           {[
-            { id: 'all', label: 'All Projects', icon: '📁' },
+            { id: 'all', label: 'Projects', icon: '📁' },
             { id: 'drilling', label: 'Well Drilling', icon: '💦' },
             { id: 'supply', label: 'Pump Supply', icon: '⚡' },
             { id: 'maintenance', label: 'Water Services', icon: '🛠️' },
