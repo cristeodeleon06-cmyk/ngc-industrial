@@ -7,6 +7,7 @@ import { Portfolio } from './components/Portfolio';
 import { InquiryForm } from './components/InquiryForm';
 import { Certifications } from './components/Certifications';
 import { Footer } from './components/Footer';
+import { FloatingContact } from './components/FloatingContact';
 import { Check, X } from 'lucide-react';
 
 export default function App() {
@@ -91,7 +92,10 @@ export default function App() {
       {/* 7. Responsive Footer */}
       <Footer onNavigate={handleNavigation} />
 
-      {/* 8. Floating Custom Responsive Toast Alerts */}
+      {/* 8. Floating Contact Action Widget */}
+      <FloatingContact />
+
+      {/* 9. Floating Custom Responsive Toast Alerts */}
       {toast && (
         <div 
           className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl shadow-2xl flex items-center gap-3 border animate-in slide-in-from-bottom-5 duration-300 bg-slate-900 border-slate-800 text-white"

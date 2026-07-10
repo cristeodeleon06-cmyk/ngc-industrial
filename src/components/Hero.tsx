@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Drill, Droplet, Shield, Settings, Wrench, Camera, Building, Hammer, Route, Compass } from 'lucide-react';
+import { ArrowRight, Drill, Droplet, Shield, Settings, Wrench, Camera, Building, Hammer, Route, Compass, Sparkles, ChevronRight } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface HeroProps {
   onScrollTo: (sectionId: string) => void;
@@ -57,20 +58,59 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
               Send Inquiry
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
             </button>
-            <button
+            <motion.button
               onClick={() => onScrollTo('services')}
-              className="bg-slate-900 hover:bg-[#0F172A] border border-slate-700 hover:border-slate-600 text-white font-semibold text-sm uppercase tracking-wider px-8 py-4 rounded-xl backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-2"
+              whileHover={{ 
+                scale: 1.03,
+                borderColor: "rgba(250, 204, 21, 0.7)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="relative overflow-hidden bg-slate-900/90 hover:bg-slate-900 border border-slate-700 text-white hover:text-yellow-400 font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl backdrop-blur-md transition-colors duration-300 flex items-center justify-center gap-3 group cursor-pointer shadow-md hover:shadow-xl hover:shadow-yellow-400/5"
               id="hero-services-btn"
             >
-              Our Expertise & Services
-            </button>
+              {/* Subtle hover background highlight gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-yellow-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              
+              {/* Shimmer line effect across the button */}
+              <div className="absolute top-0 bottom-0 -left-[100%] w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:animate-shine pointer-events-none" />
+
+              <span className="relative flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-yellow-400 animate-pulse" />
+                Our Expertise & Services
+              </span>
+
+              <div className="relative p-1 rounded-md bg-slate-800 text-slate-300 group-hover:bg-[#FACC15] group-hover:text-slate-950 transition-all duration-300 flex items-center justify-center">
+                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" />
+              </div>
+            </motion.button>
           </div>
 
           {/* Trust indicators */}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-400 font-medium">
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> ISO Compliant Standards</span>
-            <span className="hidden sm:inline text-slate-700">|</span>
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Over 20+ Years Combined Experience</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-xs sm:text-sm text-slate-200 font-semibold" id="hero-trust-indicators">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0 animate-pulse" /> 
+              ISO Compliant Standards
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0 animate-pulse" /> 
+              Over 20+ Years Combined Experience
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0 animate-pulse" /> 
+              2,000+ Pumps Installed
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0 animate-pulse" /> 
+              150+ Wells Drilled
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0 animate-pulse" /> 
+              Nationwide Service
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0 animate-pulse" /> 
+              24/7 Technical Support
+            </span>
           </div>
         </div>
 
