@@ -570,94 +570,28 @@ export const Portfolio: React.FC = () => {
               Our Esteemed Clients & Partners
             </h3>
             <p className="text-sm text-slate-500 font-medium">
-              We are proud to maintain ongoing relationships with the country's leading water utility providers, industrial facilities, and development zones.
+              Trusted by Government Agencies, Contractors,
+Manufacturing Companies & Private Developers.
             </p>
           </div>
 
-          <div className="space-y-6 overflow-hidden relative py-4" id="marquee-container">
-            {/* Gradient Mask Overlays for premium fading edges */}
-            <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
-
-            {/* Row 1 Slider - Left to Right scrolling */}
-            <div className="flex w-full overflow-hidden" id="marquee-row1">
-              <div className="flex gap-4 animate-marquee whitespace-nowrap min-w-full">
-                {/* Loop 1 */}
-                {CLIENT_ROW1.map((client, idx) => (
-                  <div
-                    key={`r1-${idx}`}
-                    className="flex items-center justify-center bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:border-[#FACC15]/40 hover:shadow-md transition-all duration-300 w-72 h-40 shrink-0 overflow-hidden relative"
-                  >
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="max-w-full max-h-full object-contain relative z-10 transition-transform duration-300 hover:scale-110"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                    <Building2 className="w-12 h-12 text-slate-300 absolute animate-pulse" />
-                  </div>
-                ))}
-                {/* Loop 2 for Seamless scrolling */}
-                {CLIENT_ROW1.map((client, idx) => (
-                  <div
-                    key={`r1-dup-${idx}`}
-                    className="flex items-center justify-center bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:border-[#FACC15]/40 hover:shadow-md transition-all duration-300 w-72 h-40 shrink-0 overflow-hidden relative"
-                  >
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="max-w-full max-h-full object-contain relative z-10 transition-transform duration-300 hover:scale-110"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                    <Building2 className="w-12 h-12 text-slate-300 absolute animate-pulse" />
-                  </div>
-                ))}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 pt-4" id="clients-grid">
+            {[...CLIENT_ROW1, ...CLIENT_ROW2].map((client, idx) => (
+              <div
+                key={`client-${idx}`}
+                className="flex items-center justify-center bg-white border border-slate-200/60 rounded-2xl p-3 sm:p-4 shadow-sm hover:border-[#FACC15] hover:shadow-lg hover:scale-110 hover:-translate-y-1 hover:z-20 transition-all duration-300 aspect-video shrink-0 overflow-hidden relative group cursor-pointer"
+              >
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="w-11/12 h-11/12 object-contain relative z-10 filter grayscale opacity-85 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-115 transition-all duration-300"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+                <Building2 className="w-10 h-10 text-slate-100 absolute group-hover:opacity-0 transition-opacity duration-300" />
               </div>
-            </div>
-
-            {/* Row 2 Slider - Right to Left scrolling */}
-            <div className="flex w-full overflow-hidden" id="marquee-row2">
-              <div className="flex gap-4 animate-marquee-reverse whitespace-nowrap min-w-full">
-                {/* Loop 1 */}
-                {CLIENT_ROW2.map((client, idx) => (
-                  <div
-                    key={`r2-${idx}`}
-                    className="flex items-center justify-center bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:border-[#FACC15]/40 hover:shadow-md transition-all duration-300 w-72 h-40 shrink-0 overflow-hidden relative"
-                  >
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="max-w-full max-h-full object-contain relative z-10 transition-transform duration-300 hover:scale-110"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                    <Building2 className="w-12 h-12 text-slate-300 absolute animate-pulse" />
-                  </div>
-                ))}
-                {/* Loop 2 for Seamless scrolling */}
-                {CLIENT_ROW2.map((client, idx) => (
-                  <div
-                    key={`r2-dup-${idx}`}
-                    className="flex items-center justify-center bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:border-[#FACC15]/40 hover:shadow-md transition-all duration-300 w-72 h-40 shrink-0 overflow-hidden relative"
-                  >
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="max-w-full max-h-full object-contain relative z-10 transition-transform duration-300 hover:scale-110"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                    <Building2 className="w-12 h-12 text-slate-300 absolute animate-pulse" />
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
