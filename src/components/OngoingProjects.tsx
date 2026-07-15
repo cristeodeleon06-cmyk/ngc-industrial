@@ -71,7 +71,8 @@ const ONGOING_PROJECTS_DATA: OngoingProject[] = [
       'Borehole reaming & enlargement',
       'Installation of casing pipes',
       'Well-development using high-pressure surging and continuous multi-stage pumping yield tests',
-      'Construction of complete reinforced concrete pump housing with state-of-the-art VFD controls'
+      'Construction of complete reinforced concrete pump housing with state-of-the-art VFD controls',
+      'Cleaning of Site - Demobilization'
     ],
     milestones: [
       { phase: 'Mobilization & Rig Setup', status: 'completed' },
@@ -80,6 +81,7 @@ const ONGOING_PROJECTS_DATA: OngoingProject[] = [
       { phase: 'Casing & Screen Installation', status: 'completed' },
       { phase: 'Well Development & Yield Testing', status: 'completed' },
       { phase: 'Construction of Pump House with VFD controls', status: 'completed' },
+      { phase: 'Cleaning of Site - Demobilization', status: 'completed' },
       { phase: 'Re-touching of Paint', status: 'active' }
     ],
     specs: [
@@ -87,7 +89,82 @@ const ONGOING_PROJECTS_DATA: OngoingProject[] = [
       { label: 'Contract Project', value: 'Design and Build' }
     ]
   },
-  
+  {
+    id: 'op2',
+    title: 'Construction of a Deep Water Well in Capijana Village',
+    client: 'Capijana Village',
+    location: 'San Rafael, Bulacan',
+    category: 'drilling',
+    categories: ['drilling', 'installation'],
+    status: 'In Progress (Test Pumping)',
+    progress: 80,
+    startDate: 'June 2026',
+    targetCompletion: 'August 2026',
+    description: 'The project involved the construction of a deep water well in Capijana Village using percussion drilling techniques. Designed to provide a reliable and sustainable source of groundwater, the project supports the communitys long-term water supply needs while ensuring efficient, safe, and high-quality construction standards.',
+    currentPhase: 'Test Pumping',
+    image: '/images/Capijana Village.mp4',
+    gallery: [
+        '/images/Capijana Village.mp4',
+    ],
+    scopeOfWork: [
+      'Mobilization of heavy-duty Percussion drilling rig & support equipment',
+      'Pilot hole drilling', 
+      'Installation of casing pipes',
+      'Well-development using high-pressure surging and continuous multi-stage pumping yield tests',
+      'Installation and Supply of Electro - Mechanical',
+      'Cleaning of Site - Demobilization'
+    ],
+    milestones: [
+      { phase: 'Mobilization & Rig Setup', status: 'completed' },
+      { phase: 'Pilot Hole Completion', status: 'completed' },
+      { phase: 'Casing & Screen Installation', status: 'completed' },
+      { phase: 'Well Development & Yield Testing', status: 'active' },
+      { phase: 'Installation and Supply of Electro-Mechanical', status: 'upcoming' },
+      { phase: 'Cleaning of Site - Demobilization', status: 'upcoming' }
+    ],
+    specs: [
+      { label: 'Equipment Deployed', value: 'Percussion Drilling Rig' },
+      { label: 'Contract Project', value: 'Drilling and Supply of Materials' }
+    ]
+  },
+  {
+    id: 'op3',
+    title: 'Construction of Deep Well Drilling for Calumpit Water District',
+    client: 'Calumpit Water District',
+    location: 'Calumpit, Bulacan',
+    category: 'drilling',
+    status: 'In Progress (Drilling of Pilot Hole)',
+    progress: 25,
+    startDate: 'June - Mid 2026',
+    targetCompletion: 'September - Mid 2026',
+    description: 'This project involved the construction of a deep water well for Calumpit Water District, utilizing advanced rotary drilling methods to develop a reliable and sustainable groundwater source. Executed in accordance with industry standards, the project enhances water supply capacity while ensuring long-term performance, efficiency, and dependable service for the communities served by the district.',
+    currentPhase: 'Drilling of Pilot Hole',
+    image: '/images/CalumpitWD.mp4',
+    gallery: [
+        '/images/CalumpitWD.mp4',
+    ],
+    scopeOfWork: [
+      'Mobilization of heavy-duty crawler-rotary drilling rig & support equipment',
+      'Pilot hole drilling with bentonite-polymer mud circulation',
+      'Geophysical logging and electric correlation to determine target aquifer strata',
+      'Borehole reaming & enlargement',
+      'Installation of casing pipes',
+      'Well-development using high-pressure surging and continuous multi-stage pumping yield tests',
+      'Cleaning of Site - Demobilization'
+    ],
+    milestones: [
+      { phase: 'Mobilization & Rig Setup', status: 'completed' },
+      { phase: 'Pilot Hole Completion', status: 'active' },
+      { phase: 'Borehole Reaming & Enlargement', status: 'upcoming' },
+      { phase: 'Casing & Screen Installation', status: 'upcoming' },
+      { phase: 'Well Development & Yield Testing', status: 'upcoming' },
+      { phase: 'Cleaning of Site - Demobilization', status: 'upcoming' },
+    ],
+    specs: [
+      { label: 'Equipment Deployed', value: 'Crawler - Rotary Drilling Rig' },
+      { label: 'Contract Project', value: 'Drilling' }
+    ]
+  }
 ];
 
 const getCategoryIcon = (cat: 'drilling' | 'rehabilitation' | 'installation' | 'resistivity' | 'maintenance') => {
@@ -214,7 +291,7 @@ export const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onBackToHome, 
             <Activity className="w-7 h-7 text-emerald-400 animate-pulse shrink-0" />
             <div>
               <span className="text-xs uppercase font-extrabold text-slate-400 block tracking-wider mb-0.5">System Status</span>
-              <span className="text-sm sm:text-base text-white font-black tracking-tight">1 Major Contract Active</span>
+              <span className="text-sm sm:text-base text-white font-black tracking-tight">3 Major Contracts Active</span>
             </div>
           </div>
         </div>
@@ -254,6 +331,18 @@ export const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onBackToHome, 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             referrerPolicy="strict-origin-when-cross-origin"
                           ></iframe>
+                        </div>
+                      ) : project.image?.toLowerCase().endsWith('.mp4') ? (
+                        <div className="absolute inset-0 w-full h-full z-10 overflow-hidden bg-black flex items-center justify-center">
+                          <video
+                            className="w-full h-full object-cover"
+                            src={project.image}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            controls={false}
+                          />
                         </div>
                       ) : (
                         <>
@@ -408,41 +497,85 @@ export const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onBackToHome, 
                   
                   {/* Background layer blur of current image */}
                   <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-                    <img
-                      src={
-                        activeProject.videoEmbedUrl && activeImageIndex === 0
-                          ? activeProject.image
-                          : activeProject.videoEmbedUrl
-                          ? activeProject.gallery[activeImageIndex - 1]
-                          : activeProject.gallery[activeImageIndex]
+                    {(() => {
+                      const currentMediaUrl = activeProject.videoEmbedUrl && activeImageIndex === 0
+                        ? activeProject.image
+                        : activeProject.videoEmbedUrl
+                        ? activeProject.gallery[activeImageIndex - 1]
+                        : activeProject.gallery[activeImageIndex];
+                      
+                      if (currentMediaUrl?.toLowerCase().endsWith('.mp4')) {
+                        return (
+                          <video
+                            src={currentMediaUrl}
+                            className="w-full h-full object-cover blur-2xl scale-110"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          />
+                        );
                       }
-                      alt=""
-                      className="w-full h-full object-cover blur-2xl scale-110"
-                      style={{ willChange: 'transform' }}
-                    />
+                      return (
+                        <img
+                          src={currentMediaUrl}
+                          alt=""
+                          className="w-full h-full object-cover blur-2xl scale-110"
+                          style={{ willChange: 'transform' }}
+                        />
+                      );
+                    })()}
                   </div>
 
                   {/* Main Carousel Display Box */}
                   <div className="flex-1 flex items-center justify-center relative overflow-hidden rounded-2xl bg-slate-950/40 border border-slate-800/40 z-10 w-full h-full animate-fade-in">
-                    {activeProject.videoEmbedUrl && activeImageIndex === 0 ? (
-                      <div className="w-full h-full p-2 flex items-center justify-center bg-black/40 z-10">
-                        <iframe
-                          className="w-full h-full rounded-xl aspect-video border-0 shadow-2xl"
-                          src={`${activeProject.videoEmbedUrl}${activeProject.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1`}
-                          title="YouTube video player"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                    ) : (
-                      <img
-                        src={activeProject.videoEmbedUrl ? activeProject.gallery[activeImageIndex - 1] : activeProject.gallery[activeImageIndex]}
-                        alt={activeProject.title}
-                        referrerPolicy="no-referrer"
-                        className="relative max-w-full max-h-full object-contain z-10 rounded-lg p-2"
-                      />
-                    )}
+                    {(() => {
+                      const currentMediaUrl = activeProject.videoEmbedUrl && activeImageIndex === 0
+                        ? activeProject.image
+                        : activeProject.videoEmbedUrl
+                        ? activeProject.gallery[activeImageIndex - 1]
+                        : activeProject.gallery[activeImageIndex];
+
+                      if (activeProject.videoEmbedUrl && activeImageIndex === 0) {
+                        return (
+                          <div className="w-full h-full p-2 flex items-center justify-center bg-black/40 z-10">
+                            <iframe
+                              className="w-full h-full rounded-xl aspect-video border-0 shadow-2xl"
+                              src={`${activeProject.videoEmbedUrl}${activeProject.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1`}
+                              title="YouTube video player"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        );
+                      }
+
+                      if (currentMediaUrl?.toLowerCase().endsWith('.mp4')) {
+                        return (
+                          <div className="w-full h-full p-2 flex items-center justify-center bg-black/40 z-10">
+                            <video
+                              src={currentMediaUrl}
+                              className="w-full h-full rounded-xl object-contain shadow-2xl"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              controls
+                            />
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <img
+                          src={currentMediaUrl}
+                          alt={activeProject.title}
+                          referrerPolicy="no-referrer"
+                          className="relative max-w-full max-h-full object-contain z-10 rounded-lg p-2"
+                        />
+                      );
+                    })()}
 
                     {/* Left Carousel Arrow */}
                     <button
@@ -490,15 +623,26 @@ export const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onBackToHome, 
 
                     {activeProject.gallery.map((imgUrl, idx) => {
                       const buttonIdx = activeProject.videoEmbedUrl ? idx + 1 : idx;
+                      const isVideo = imgUrl?.toLowerCase().endsWith('.mp4');
                       return (
                         <button
                           key={idx}
                           onClick={() => setActiveImageIndex(buttonIdx)}
-                          className={`h-12 w-16 md:h-14 md:w-20 rounded-lg overflow-hidden border-2 bg-slate-900 transition-all shrink-0 flex items-center justify-center cursor-pointer ${
+                          className={`h-12 w-16 md:h-14 md:w-20 rounded-lg overflow-hidden border-2 bg-slate-900 transition-all shrink-0 flex items-center justify-center cursor-pointer relative ${
                             activeImageIndex === buttonIdx ? 'border-amber-400 ring-2 ring-amber-400/20 scale-105 shadow-md' : 'border-slate-800 hover:border-slate-600'
                           }`}
                         >
-                          <img src={imgUrl} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                          {isVideo ? (
+                            <>
+                              <div className="absolute inset-0 flex items-center justify-center bg-slate-950/60 z-10">
+                                <Play className="w-5 h-5 text-amber-400 fill-amber-400/20" />
+                              </div>
+                              <video src={imgUrl} className="w-full h-full object-cover opacity-60" muted />
+                              <span className="absolute bottom-0.5 right-0.5 text-[8px] bg-slate-950/80 text-white px-1 rounded font-bold z-20">VIDEO</span>
+                            </>
+                          ) : (
+                            <img src={imgUrl} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                          )}
                         </button>
                       );
                     })}
