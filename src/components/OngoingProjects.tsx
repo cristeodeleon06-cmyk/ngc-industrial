@@ -84,6 +84,7 @@ const ONGOING_PROJECTS_DATA: OngoingProject[] = [
     ],
     specs: [
       { label: 'Equipment Deployed', value: 'Crawler - Rotary Drilling Rig' },
+      { label: 'Contract Project', value: 'Design and Build' }
     ]
   },
   
@@ -213,7 +214,7 @@ export const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onBackToHome, 
             <Activity className="w-7 h-7 text-emerald-400 animate-pulse shrink-0" />
             <div>
               <span className="text-xs uppercase font-extrabold text-slate-400 block tracking-wider mb-0.5">System Status</span>
-              <span className="text-sm sm:text-base text-white font-black tracking-tight">4 Major Contracts Active</span>
+              <span className="text-sm sm:text-base text-white font-black tracking-tight">1 Major Contract Active</span>
             </div>
           </div>
         </div>
