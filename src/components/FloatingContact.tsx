@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, Copy, Check, ExternalLink, MessageCircle, Mail, ArrowRight } from 'lucide-react';
 
-export function FloatingContact() {
+interface FloatingContactProps {
+  onSendInquiry?: () => void;
+}
+
+export function FloatingContact({ onSendInquiry }: FloatingContactProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const viberNumber = '0915 421 4421';
@@ -90,7 +94,11 @@ export function FloatingContact() {
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsOpen(false);
-                  document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  if (onSendInquiry) {
+                    onSendInquiry();
+                  } else {
+                    document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
                 }}
                 className="w-full flex items-center justify-between p-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 hover:border-amber-500/40 transition-all duration-200 group text-left cursor-pointer"
               >

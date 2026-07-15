@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NGCLogo } from './NGCLogo';
-import { Phone, Mail, Clock, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, Clock, Menu, X, ArrowRight, ShieldCheck, ChevronDown, Grid, Globe, Building2 } from 'lucide-react';
 
 interface HeaderProps {
   onNavigate: (sectionId: string) => void;
@@ -75,23 +75,103 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-8" id="desktop-nav">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`text-sm font-semibold tracking-wide transition-colors relative py-1 hover:text-[#FACC15] ${
-                activeSection === item.id
-                  ? isScrolled ? 'text-[#0F172A] font-extrabold' : 'text-[#FACC15] font-extrabold'
-                  : isScrolled ? 'text-slate-600' : 'text-slate-300'
-              }`}
-              id={`nav-${item.id}`}
-            >
-              {item.label}
-              {activeSection === item.id && (
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#FACC15] rounded-full" />
-              )}
-            </button>
-          ))}
+          {navItems.map((item) => {
+            const isPortfolio = item.id === 'portfolio';
+            if (isPortfolio) {
+              return (
+                <div key={item.id} className="relative group py-4">
+                  <button
+                    onClick={() => handleNavClick('portfolio')}
+                    className={`text-sm font-semibold tracking-wide transition-colors relative py-1 hover:text-[#FACC15] flex items-center gap-1 cursor-pointer ${
+                      activeSection === item.id || activeSection === 'ongoing-projects' || activeSection === 'trusted-clients-section'
+                        ? isScrolled ? 'text-[#0F172A] font-extrabold' : 'text-[#FACC15] font-extrabold'
+                        : isScrolled ? 'text-slate-600' : 'text-slate-300'
+                    }`}
+                    id={`nav-${item.id}`}
+                  >
+                    {item.label}
+                    <ChevronDown className="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                    {(activeSection === item.id || activeSection === 'ongoing-projects' || activeSection === 'trusted-clients-section') && (
+                      <span className="absolute bottom-3 left-0 w-full h-0.5 bg-[#FACC15] rounded-full" />
+                    )}
+                  </button>
+                  
+                  {/* Submenu Dropdown Card */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1 hidden group-hover:block w-72 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="bg-slate-950/95 border border-slate-800 text-white rounded-2xl shadow-2xl p-2.5 flex flex-col gap-1 backdrop-blur-md">
+                      <button
+                        onClick={() => handleNavClick('portfolio')}
+                        className="w-full text-left py-2 px-3 rounded-xl hover:bg-slate-900 transition-colors flex items-start gap-2.5 group/item cursor-pointer"
+                      >
+                        <div className="p-1.5 rounded-lg bg-slate-900 text-[#FACC15] group-hover/item:bg-[#FACC15] group-hover/item:text-slate-950 transition-colors shrink-0">
+                          <Grid className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-black text-white group-hover/item:text-[#FACC15] transition-colors leading-none mb-1">
+                            Major Completed Projects
+                          </div>
+                          <div className="text-[10px] text-slate-400 font-medium">
+                            Browse our multi-site engineering portfolio
+                          </div>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => handleNavClick('ongoing-projects')}
+                        className="w-full text-left py-2 px-3 rounded-xl hover:bg-slate-900 transition-colors flex items-start gap-2.5 group/item cursor-pointer"
+                      >
+                        <div className="p-1.5 rounded-lg bg-slate-900 text-[#FACC15] group-hover/item:bg-[#FACC15] group-hover/item:text-slate-950 transition-colors shrink-0">
+                          <Clock className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-black text-white group-hover/item:text-[#FACC15] transition-colors leading-none mb-1">
+                            On Going Projects
+                          </div>
+                          <div className="text-[10px] text-slate-400 font-medium">
+                            Live active client installations & contracts
+                          </div>
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => handleNavClick('trusted-clients-section')}
+                        className="w-full text-left py-2 px-3 rounded-xl hover:bg-slate-900 transition-colors flex items-start gap-2.5 group/item cursor-pointer"
+                      >
+                        <div className="p-1.5 rounded-lg bg-slate-900 text-[#FACC15] group-hover/item:bg-[#FACC15] group-hover/item:text-slate-950 transition-colors shrink-0">
+                          <Building2 className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-black text-white group-hover/item:text-[#FACC15] transition-colors leading-none mb-1">
+                            Trusted Clients
+                          </div>
+                          <div className="text-[10px] text-slate-400 font-medium">
+                            See our corporate and water district partners
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`text-sm font-semibold tracking-wide transition-colors relative py-1 hover:text-[#FACC15] cursor-pointer ${
+                  activeSection === item.id
+                    ? isScrolled ? 'text-[#0F172A] font-extrabold' : 'text-[#FACC15] font-extrabold'
+                    : isScrolled ? 'text-slate-600' : 'text-slate-300'
+                }`}
+                id={`nav-${item.id}`}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#FACC15] rounded-full" />
+                )}
+              </button>
+            );
+          })}
         </nav>
 
         {/* Header Right Side CTA */}
@@ -130,21 +210,51 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
           id="mobile-nav-panel"
         >
           <div className="flex flex-col p-6 gap-4" id="mobile-nav-list">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`text-left py-2 px-3 rounded-md text-base font-semibold transition-colors flex items-center justify-between ${
-                  activeSection === item.id
-                    ? 'bg-[#FACC15]/10 text-yellow-400 border-l-4 border-[#FACC15] pl-2'
-                    : 'text-slate-300 hover:bg-slate-900 hover:text-white'
-                }`}
-                id={`mobile-nav-${item.id}`}
-              >
-                {item.label}
-                <ArrowRight className="w-4 h-4 opacity-40" />
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isPortfolio = item.id === 'portfolio';
+              return (
+                <div key={item.id} className="flex flex-col gap-1">
+                  <button
+                    onClick={() => handleNavClick(item.id)}
+                    className={`text-left py-2 px-3 rounded-md text-base font-semibold transition-colors flex items-center justify-between cursor-pointer ${
+                      activeSection === item.id || (isPortfolio && ['ongoing-projects', 'trusted-clients-section'].includes(activeSection))
+                        ? 'bg-[#FACC15]/10 text-yellow-400 border-l-4 border-[#FACC15] pl-2'
+                        : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                    }`}
+                    id={`mobile-nav-${item.id}`}
+                  >
+                    {item.label}
+                    <ArrowRight className="w-4 h-4 opacity-40" />
+                  </button>
+                  {isPortfolio && (
+                    <div className="pl-6 pr-2 py-1 flex flex-col gap-2 mt-1 border-l-2 border-slate-800 ml-3">
+                      <button
+                        onClick={() => handleNavClick('portfolio')}
+                        className="text-left py-1 text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-2 cursor-pointer"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
+                        Major Completed Projects
+                      </button>
+                      <button
+                        onClick={() => handleNavClick('ongoing-projects')}
+                        className="text-left py-1 text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-2 cursor-pointer"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-600 animate-pulse bg-yellow-400" />
+                        On Going Projects
+                      </button>
+                      
+                      <button
+                        onClick={() => handleNavClick('trusted-clients-section')}
+                        className="text-left py-1 text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-2 cursor-pointer"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
+                        Trusted Clients
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
             <div className="h-px bg-slate-800 my-2" />
             <div className="flex flex-col gap-3">
               <button

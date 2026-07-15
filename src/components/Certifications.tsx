@@ -22,7 +22,7 @@ interface CertificateItem {
 }
 
 export const Certifications: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'iso' | 'pcab' | 'nwrb'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'iso' | 'pcab' | 'nwrb' | 'pgs'>('all');
 
   const certificatesData: CertificateItem[] = [
     {
@@ -96,17 +96,17 @@ export const Certifications: React.FC = () => {
         'Specialty - Well Drilling Work'
       ],
       kindsOfProject: [
-        { name: 'Well-Drilling Work', range: 'Small B' },
-        { name: 'Water Supply', range: 'Small B' },
-        { name: 'Water Treatment Plant and System', range: 'Small B' },
-        { name: 'Irrigation and Flood Control', range: 'Small B' },
-        { name: 'Dam, Reservoir and Tunneling', range: 'Small B' },
         { name: 'Road, Highway, Pavements, Railways, Airport Horizontal', range: 'Small B' },
         { name: 'Structures and Bridges', range: 'Small B' },
-                { name: 'Building and Industrial Plant', range: 'Small B' },
-        { name: 'Sewerage and Sewage Treatment/Disposal Plant', range: 'Small B' },
+        { name: 'Irrigation and Flood Control', range: 'Small B' },
+        { name: 'Dam, Reservoir and Tunneling', range: 'Small B' },
+        { name: 'Water Supply', range: 'Small B' },
         { name: 'Port, Harbor and Offshore Engineering', range: 'Small B' },
+        { name: 'Building and Industrial Plant', range: 'Small B' },
+        { name: 'Sewerage and Sewage Treatment/Disposal Plant', range: 'Small B' },
+        { name: 'Water Treatment Plant and System', range: 'Small B' },
         { name: 'Park, Playground and Recreational Work', range: 'Small B' },
+        { name: 'Well-Drilling Work', range: 'Small B' }
       ],
       icon: <Shield className="w-5 h-5 text-sky-400" />,
       image: '/images/pcab_license_official_1782710345102.jpg',
@@ -129,6 +129,22 @@ export const Certifications: React.FC = () => {
       icon: <Scale className="w-5 h-5 text-teal-400" />,
       image: '/images/nwrb_registration_official_1782710640988.jpg',
       stat: 'NWRB No. 591'
+    },
+    {
+      id: 'pgs',
+      category: 'pgs',
+      title: 'Philippine GroundWater Society',
+      subtitle: 'Active Professional Membership & Accreditation',
+      badges: ['PGS Member', 'Groundwater Specialist', 'Accredited Member'],
+      description: "NGC Industrial Pump Trading & Services is an accredited member of the Philippine GroundWater Society (PGS), conforming to professional standards, continuing education, and technical cooperation in groundwater science and engineering in the Philippines.",
+      details: [
+        { label: 'Organization', desc: 'Philippine GroundWater Society (PGS)' },
+        { label: 'Professional Alignment', desc: 'Advancing groundwater hydrology, deep well exploration techniques, and sustainable aquifer management standards.' },
+        { label: 'Membership Status', desc: 'Active Accredited Corporate / Professional Member' }
+      ],
+      icon: <Layers className="w-5 h-5 text-amber-400" />,
+      image: '/images/PGS.jpg',
+      stat: 'PGS Member'
     }
   ];
 
@@ -200,6 +216,17 @@ export const Certifications: React.FC = () => {
           >
             <Scale className="w-4 h-4" />
             <span>NWRB Registration</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('pgs')}
+            className={`px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 border flex items-center gap-2 ${
+              activeTab === 'pgs'
+                ? 'bg-[#FACC15] text-[#0F172A] border-[#FACC15] shadow-lg shadow-[#FACC15]/15'
+                : 'bg-slate-950 text-slate-400 border-slate-850 hover:border-slate-700'
+            }`}
+          >
+            <Layers className="w-4 h-4" />
+            <span>PGS Membership</span>
           </button>
         </div>
 

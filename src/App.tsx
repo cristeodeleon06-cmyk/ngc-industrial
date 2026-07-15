@@ -8,16 +8,19 @@ import { InquiryForm } from './components/InquiryForm';
 import { Certifications } from './components/Certifications';
 import { Footer } from './components/Footer';
 import { FloatingContact } from './components/FloatingContact';
+import { OngoingProjects } from './components/OngoingProjects';
 import { Check, X } from 'lucide-react';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
+  const [currentPage, setCurrentPage] = useState<'home' | 'ongoing'>('home');
   const [inquiryService, setInquiryService] = useState<'drilling' | 'supply' | 'maintenance'>('drilling');
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
 
   // Update intersection observer to highlight navbar links on scroll
   useEffect(() => {
     const handleScrollObserver = () => {
+      if (currentPage !== 'home') return;
       const sections = ['hero', 'about', 'services', 'portfolio', 'inquiry', 'certifications', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
@@ -36,7 +39,7 @@ export default function App() {
 
     window.addEventListener('scroll', handleScrollObserver);
     return () => window.removeEventListener('scroll', handleScrollObserver);
-  }, []);
+  }, [currentPage]);
 
   const triggerToast = (message: string, type: 'success' | 'info' | 'error' = 'success') => {
     setToast({ message, type });
@@ -47,10 +50,28 @@ export default function App() {
 
   // Anchor links smooth navigation
   const handleNavigation = (sectionId: string) => {
-    setActiveSection(sectionId);
-    const targetElement = document.getElementById(sectionId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (sectionId === 'ongoing-projects') {
+      setCurrentPage('ongoing');
+      setActiveSection('portfolio');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (currentPage !== 'home') {
+      setCurrentPage('home');
+      setActiveSection(sectionId);
+      setTimeout(() => {
+        const targetElement = document.getElementById(sectionId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
+    } else {
+      setActiveSection(sectionId);
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
@@ -68,32 +89,41 @@ export default function App() {
 
       {/* Main Sections */}
       <main className="flex-grow">
-        {/* 2. Hero Presentation */}
-        <Hero onScrollTo={handleNavigation} />
+        {currentPage === 'home' ? (
+          <>
+            {/* 2. Hero Presentation */}
+            <Hero onScrollTo={handleNavigation} />
 
-        {/* About Us Presentation */}
-        <AboutUs />
+            {/* About Us Presentation */}
+            <AboutUs />
 
-        {/* 3. Core engineering Services */}
-        <Services onSelectServiceAndScroll={handleSelectServiceAndScroll} />
+            {/* 3. Core engineering Services */}
+            <Services onSelectServiceAndScroll={handleSelectServiceAndScroll} />
 
-        {/* 4. Portfolio Completed Gallery */}
-        <Portfolio />
+            {/* 4. Portfolio Completed Gallery */}
+            <Portfolio />
 
-        {/* 5. Live Professional Project Inquiry Form */}
-        <InquiryForm 
-          initialService={inquiryService} 
-        />
+            {/* 5. Live Professional Project Inquiry Form */}
+            <InquiryForm 
+              initialService={inquiryService} 
+            />
 
-        {/* 6. Professional Certifications Section */}
-        <Certifications />
+            {/* 6. Professional Certifications Section */}
+            <Certifications />
+          </>
+        ) : (
+          <OngoingProjects 
+            onBackToHome={() => handleNavigation('hero')} 
+            onConsult={() => handleNavigation('inquiry')}
+          />
+        )}
       </main>
 
       {/* 7. Responsive Footer */}
       <Footer onNavigate={handleNavigation} />
 
       {/* 8. Floating Contact Action Widget */}
-      <FloatingContact />
+      <FloatingContact onSendInquiry={() => handleNavigation('inquiry')} />
 
       {/* 9. Floating Custom Responsive Toast Alerts */}
       {toast && (

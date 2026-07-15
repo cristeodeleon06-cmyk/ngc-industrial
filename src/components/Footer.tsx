@@ -74,6 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 { id: 'about', label: 'About Us' },
                 { id: 'services', label: 'Our Specializations' },
                 { id: 'portfolio', label: 'Completed Gallery' },
+                { id: 'ongoing-projects', label: 'On Going Projects' },
                 { id: 'inquiry', label: 'Project Inquiry Form' },
                 { id: 'certifications', label: 'Accredited Certifications' }
               ].map((item) => (
