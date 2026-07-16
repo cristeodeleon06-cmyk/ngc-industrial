@@ -24,7 +24,7 @@ import {
   Play
 } from 'lucide-react';
 
-interface OngoingProject {
+export interface OngoingProject {
   id: string;
   title: string;
   client: string;
@@ -45,7 +45,7 @@ interface OngoingProject {
   videoEmbedUrl?: string;
 }
 
-const ONGOING_PROJECTS_DATA: OngoingProject[] = [
+export const ONGOING_PROJECTS_DATA: OngoingProject[] = [
   {
     id: 'op1',
     title: 'Deep Well Drilling & Structural Pump House Construction',

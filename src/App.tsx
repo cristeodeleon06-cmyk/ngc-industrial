@@ -57,6 +57,26 @@ export default function App() {
       return;
     }
 
+    if (sectionId === 'home-ongoing-projects') {
+      if (currentPage !== 'home') {
+        setCurrentPage('home');
+        setActiveSection('portfolio');
+        setTimeout(() => {
+          const targetElement = document.getElementById('home-ongoing-projects');
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 150);
+      } else {
+        setActiveSection('portfolio');
+        const targetElement = document.getElementById('home-ongoing-projects');
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+      return;
+    }
+
     if (currentPage !== 'home') {
       setCurrentPage('home');
       setActiveSection(sectionId);
@@ -101,7 +121,7 @@ export default function App() {
             <Services onSelectServiceAndScroll={handleSelectServiceAndScroll} />
 
             {/* 4. Portfolio Completed Gallery */}
-            <Portfolio />
+            <Portfolio onNavigate={handleNavigation} />
 
             {/* 5. Live Professional Project Inquiry Form */}
             <InquiryForm 

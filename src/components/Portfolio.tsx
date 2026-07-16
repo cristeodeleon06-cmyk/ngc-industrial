@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PROJECTS_DATA } from '../data';
 import { Project } from '../types';
-import { MapPin, Calendar, Building2, Check, Grid, Briefcase, ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
+import { MapPin, Calendar, Building2, Check, Grid, Briefcase, ChevronLeft, ChevronRight, X, Maximize2, Activity, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { ONGOING_PROJECTS_DATA } from './OngoingProjects';
 
 interface ProjectCardProps {
   project: Project;
@@ -487,7 +488,11 @@ const CLIENT_ROW2 = [
   { name: 'Tanay Water District', logo: '/images/LogoClient/tanay.png' },
 ];
 
-export const Portfolio: React.FC = () => {
+interface PortfolioProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export const Portfolio: React.FC<PortfolioProps> = ({ onNavigate }) => {
   const [filter, setFilter] = useState<'all' | 'drilling' | 'supply' | 'maintenance' | 'servicing'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -559,6 +564,137 @@ export const Portfolio: React.FC = () => {
             />
           )}
         </AnimatePresence>
+
+        {/* On Going Projects section with minimal layout (image/video, title, location, progress bar only) */}
+        <div className="pt-24 border-t border-slate-100" id="home-ongoing-projects">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12" id="ongoing-header-wrapper">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0F172A] text-[#FACC15] font-black text-xs uppercase tracking-wide">
+              <Activity className="w-3.5 h-3.5 animate-pulse" /> Active Construction
+            </div>
+            <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              On-Going Field Projects
+            </h3>
+            <p className="text-slate-600 font-medium">
+              We are actively executing critical drilling, water supply, and rehabilitation projects. Monitor our live milestones and progress bars below.
+            </p>
+          </div>
+
+          {/* Minimal Grid Layout for Ongoing Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="home-ongoing-grid">
+            {ONGOING_PROJECTS_DATA.map((project) => {
+              const isVideo = project.image?.toLowerCase().endsWith('.mp4');
+              const hasYoutubeVideo = !!project.videoEmbedUrl;
+              return (
+                <div 
+                  key={project.id}
+                  className="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                  onClick={() => onNavigate && onNavigate('ongoing-projects')}
+                  id={`ongoing-card-${project.id}`}
+                >
+                  {/* Media Wrapper */}
+                  <div className="relative overflow-hidden aspect-video bg-slate-950" id={`ongoing-media-wrapper-${project.id}`}>
+                    {hasYoutubeVideo ? (
+                      <iframe
+  src={`${project.videoEmbedUrl ?? ''}${
+    project.videoEmbedUrl?.includes('?') ? '&' : '?'
+  }autoplay=1&mute=1&loop=1&playlist=${
+    project.videoEmbedUrl
+      ?.split('/embed/')[1]
+      ?.split('?')[0] || ''
+  }&controls=0`}
+  className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105"
+  title={project.title}
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  referrerPolicy="strict-origin-when-cross-origin"
+  id={`ongoing-youtube-${project.id}`}
+/>
+                    ) : isVideo ? (
+                      <video
+                        src={project.image}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                        id={`ongoing-video-${project.id}`}
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                        id={`ongoing-img-${project.id}`}
+                      />
+                    )}
+                    {/* Dark gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent pointer-events-none" />
+                    
+                    {/* Hover expand details overlay */}
+                    <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center gap-2 transition-all duration-300 z-10 text-white font-bold text-xs pointer-events-none">
+                      <div className="w-10 h-10 rounded-full bg-[#FACC15] text-slate-950 flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
+                      <span className="uppercase tracking-wider text-[11px] text-[#FACC15]">View Live Construction Logs</span>
+                    </div>
+
+                    {/* Progress percentage overlay */}
+                    <div className="absolute top-4 right-4 z-10 bg-slate-950/90 border border-amber-400/60 text-[#FACC15] font-black text-[11px] tracking-widest uppercase px-3 py-1.5 rounded-full backdrop-blur-md shadow-[0_0_15px_rgba(250,204,21,0.5)] flex items-center gap-2 animate-[pulse_2s_infinite] hover:scale-105 transition-transform duration-300">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-90"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FACC15] shadow-[0_0_8px_#FACC15]"></span>
+                      </span>
+                      <span className="font-extrabold">{project.progress}% LIVE</span>
+                    </div>
+                  </div>
+
+                  {/* Body Content - Minimal (Title, Location, Progress Bar Only) */}
+                  <div className="p-6 flex-grow flex flex-col justify-between space-y-4" id={`ongoing-body-${project.id}`}>
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-slate-900 group-hover:text-amber-500 transition-colors line-clamp-2 text-base leading-snug">
+                        {project.title}
+                      </h4>
+                      <span className="flex items-center gap-1.5 text-slate-500 font-semibold text-xs">
+                        <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" /> {project.location}
+                      </span>
+                    </div>
+
+                    {/* Simple sleek progress bar */}
+                    <div className="space-y-1.5 pt-2" id={`ongoing-progress-wrapper-${project.id}`}>
+                      <div className="flex justify-between items-center text-[11px] font-bold text-slate-400 uppercase tracking-wide">
+                        <span>Project Progress</span>
+                        <span className="text-[#0F172A] font-extrabold">{project.progress}%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-slate-200 rounded-full relative">
+                        <div 
+                          className="h-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-full transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(245,158,11,0.7)] relative"
+                          style={{ width: `${project.progress}%` }}
+                        >
+                          {/* Pulsing light indicator at the tip for a high-tech glowing look */}
+                          <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,1),0_0_12px_rgba(245,158,11,1)] animate-pulse" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Footer View All CTA button */}
+          <div className="text-center mt-12" id="ongoing-cta-wrapper">
+            <button
+              onClick={() => onNavigate && onNavigate('ongoing-projects')}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0F172A] border-b-4 border-b-[#FACC15] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
+            >
+              <span>View Full Interactive Timeline</span>
+              <ArrowRight className="w-4 h-4 text-[#FACC15]" />
+            </button>
+          </div>
+        </div>
+
+
 
         {/* Trusted Clients Logo Slider Section */}
         <div className="pt-24 border-t border-slate-100 space-y-12" id="trusted-clients-section">

@@ -117,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
                       </button>
 
                       <button
-                        onClick={() => handleNavClick('ongoing-projects')}
+                        onClick={() => handleNavClick('home-ongoing-projects')}
                         className="w-full text-left py-2 px-3 rounded-xl hover:bg-slate-900 transition-colors flex items-start gap-2.5 group/item cursor-pointer"
                       >
                         <div className="p-1.5 rounded-lg bg-slate-900 text-[#FACC15] group-hover/item:bg-[#FACC15] group-hover/item:text-slate-950 transition-colors shrink-0">
@@ -132,6 +132,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
                           </div>
                         </div>
                       </button>
+
                       <button
                         onClick={() => handleNavClick('trusted-clients-section')}
                         className="w-full text-left py-2 px-3 rounded-xl hover:bg-slate-900 transition-colors flex items-start gap-2.5 group/item cursor-pointer"
@@ -236,13 +237,12 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
                         Major Completed Projects
                       </button>
                       <button
-                        onClick={() => handleNavClick('ongoing-projects')}
+                        onClick={() => handleNavClick('home-ongoing-projects')}
                         className="text-left py-1 text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-2 cursor-pointer"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-slate-600 animate-pulse bg-yellow-400" />
                         On Going Projects
                       </button>
-                      
                       <button
                         onClick={() => handleNavClick('trusted-clients-section')}
                         className="text-left py-1 text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-2 cursor-pointer"
