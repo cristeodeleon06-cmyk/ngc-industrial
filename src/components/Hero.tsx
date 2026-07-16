@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Drill, Droplet, Shield, Settings, Wrench, Camera, Building, Hammer, Route, Compass, Sparkles, ChevronRight } from 'lucide-react';
+import { ArrowRight, Drill, Droplet, Shield, Settings, Wrench, Camera, Building, Hammer, Route, Compass, Sparkles, ChevronRight, Activity } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface HeroProps {
@@ -50,29 +50,44 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
 
           {/* Interactive CTAs */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <button
+            <motion.button
               onClick={() => onScrollTo('inquiry')}
-              className="bg-[#FACC15] hover:bg-yellow-500 text-[#0F172A] font-black text-sm uppercase tracking-wider px-8 py-4 rounded-xl shadow-lg shadow-yellow-900/10 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2.5 group"
+              whileHover={{ 
+                scale: 1.04,
+                boxShadow: "0 0 25px rgba(250, 204, 21, 0.65)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="relative overflow-hidden bg-gradient-to-r from-yellow-400 via-[#FACC15] to-amber-400 text-[#0F172A] font-black text-sm uppercase tracking-wider px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer border-b-4 border-b-amber-600 shadow-[0_0_15px_rgba(250,204,21,0.3)]"
               id="hero-estimator-btn"
             >
-              Send Inquiry
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-            </button>
+              {/* Shimmer line effect across the button */}
+              <div className="absolute top-0 bottom-0 -left-[100%] w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 group-hover:animate-shine pointer-events-none" />
+              
+              {/* Extra brightness overlay on hover */}
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+              <span className="relative flex items-center gap-2">
+                Send Inquiry
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+              </span>
+            </motion.button>
+
             <motion.button
               onClick={() => onScrollTo('services')}
               whileHover={{ 
-                scale: 1.03,
-                borderColor: "rgba(250, 204, 21, 0.7)"
+                scale: 1.04,
+                borderColor: "rgba(250, 204, 21, 0.9)",
+                boxShadow: "0 0 25px rgba(250, 204, 21, 0.3)"
               }}
               whileTap={{ scale: 0.98 }}
-              className="relative overflow-hidden bg-slate-900/90 hover:bg-slate-900 border border-slate-700 text-white hover:text-yellow-400 font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl backdrop-blur-md transition-colors duration-300 flex items-center justify-center gap-3 group cursor-pointer shadow-md hover:shadow-xl hover:shadow-yellow-400/5"
+              className="relative overflow-hidden bg-slate-900/90 hover:bg-slate-950 border border-slate-700 hover:border-amber-400/80 text-white hover:text-[#FACC15] font-extrabold text-sm uppercase tracking-wider px-8 py-4 rounded-xl backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer shadow-md hover:shadow-xl border-b-4 border-b-slate-800 hover:border-b-amber-500"
               id="hero-services-btn"
             >
               {/* Subtle hover background highlight gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-yellow-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/15 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               
               {/* Shimmer line effect across the button */}
-              <div className="absolute top-0 bottom-0 -left-[100%] w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:animate-shine pointer-events-none" />
+              <div className="absolute top-0 bottom-0 -left-[100%] w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 group-hover:animate-shine pointer-events-none" />
 
               <span className="relative flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-yellow-400 animate-pulse" />
@@ -80,6 +95,38 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
               </span>
 
               <div className="relative p-1 rounded-md bg-slate-800 text-slate-300 group-hover:bg-[#FACC15] group-hover:text-slate-950 transition-all duration-300 flex items-center justify-center">
+                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" />
+              </div>
+            </motion.button>
+
+            <motion.button
+              onClick={() => onScrollTo('home-ongoing-projects')}
+              whileHover={{ 
+                scale: 1.04,
+                borderColor: "rgba(250, 204, 21, 0.95)",
+                boxShadow: "0 0 25px rgba(250, 204, 21, 0.45)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="relative overflow-hidden bg-slate-950/85 hover:bg-slate-950 border border-[#FACC15]/80 text-[#FACC15] hover:text-white font-extrabold text-sm uppercase tracking-wider px-8 py-4 rounded-xl backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer shadow-[0_0_15px_rgba(250,204,21,0.2)] border-b-4 border-b-amber-500"
+              id="hero-active-projects-btn"
+            >
+              {/* Animated glowing border gradient pulse overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-amber-500/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              {/* Shimmer line effect across the button */}
+              <div className="absolute top-0 bottom-0 -left-[100%] w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:animate-shine pointer-events-none" />
+
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-90"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FACC15] shadow-[0_0_8px_#FACC15]"></span>
+              </span>
+
+              <span className="relative flex items-center gap-2">
+                <Activity className="w-4 h-4 text-[#FACC15] group-hover:text-white animate-pulse" />
+                3 Active Projects
+              </span>
+
+              <div className="relative p-1 rounded-md bg-[#FACC15]/15 text-[#FACC15] group-hover:bg-[#FACC15] group-hover:text-slate-950 transition-all duration-300 flex items-center justify-center">
                 <ChevronRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" />
               </div>
             </motion.button>
