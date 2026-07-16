@@ -513,7 +513,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNavigate }) => {
             <Briefcase className="w-3.5 h-3.5" /> Proven Track Record
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Our Project Portfolio
+            Our Major Completed Projects
           </h2>
           <p className="text-slate-600 font-medium">
             Explore some of our largest and most successful completed contracts, showcasing our expertise, quality workmanship, and commitment to delivering exceptional results on every project.
