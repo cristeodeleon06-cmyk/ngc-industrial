@@ -164,6 +164,40 @@ export const ONGOING_PROJECTS_DATA: OngoingProject[] = [
       { label: 'Equipment Deployed', value: 'Crawler - Rotary Drilling Rig' },
       { label: 'Contract Project', value: 'Drilling' }
     ]
+  },
+   {
+    id: 'op4',
+    title: 'Rec: Hybrid Solar Power System Project for a Resort Farm in Gabaldon, Nueva Ecija',
+    client: 'DentoFarm',
+    location: 'Rizal, Nueva Ecija',
+    category: 'maintenance',
+    status: 'In Progress',
+    progress: 1,
+    startDate: '2026',
+    targetCompletion: '2026',
+    description: 'This hybrid solar system integrates solar energy with backup power sources to ensure continuous electricity supply, reduce operational costs, and promote environmentally responsible energy consumption. The project supports the resort farms growing energy demands while contributing to long-term sustainability and energy independence.',
+    currentPhase: '',
+    videoEmbedUrl: 'https://www.youtube.com/embed/0YdGMujEUng?si=dmKZIUJzHc9-CYZH',
+    image: '/images/drilling_1.jpg',
+    gallery: [
+
+    ],
+    scopeOfWork: [
+      'Mobilization of all Materials needed',
+      'Installation',
+      'Testing',
+      'Cleaning of Site - Demobilization'
+    ],
+    milestones: [
+      { phase: 'Mobilization', status: 'upcoming' },
+      { phase: 'Installation', status: 'upcoming' },
+      { phase: 'Testing', status: 'upcoming' },
+      { phase: 'Cleaning of Site - Demobilization', status: 'upcoming' },
+    ],
+    specs: [
+      { label: 'Equipment Deployed', value: 'Man - power' },
+      { label: 'Contract Project', value: 'Hybrid Solar' }
+    ]
   }
 ];
 
@@ -291,7 +325,7 @@ export const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onBackToHome, 
             <Activity className="w-7 h-7 text-emerald-400 animate-pulse shrink-0" />
             <div>
               <span className="text-xs uppercase font-extrabold text-slate-400 block tracking-wider mb-0.5">System Status</span>
-              <span className="text-sm sm:text-base text-white font-black tracking-tight">3 Major Contracts Active</span>
+              <span className="text-sm sm:text-base text-white font-black tracking-tight">4 Major Contracts Active</span>
             </div>
           </div>
         </div>

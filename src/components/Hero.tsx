@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
 
               <span className="relative flex items-center gap-2">
                 <Activity className="w-4 h-4 text-[#FACC15] group-hover:text-white animate-pulse" />
-                3 Active Projects
+                4 Active Projects
               </span>
 
               <div className="relative p-1 rounded-md bg-[#FACC15]/15 text-[#FACC15] group-hover:bg-[#FACC15] group-hover:text-slate-950 transition-all duration-300 flex items-center justify-center">
